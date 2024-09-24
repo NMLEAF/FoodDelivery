@@ -27,6 +27,7 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    "react-prop/types": false,
     "react/jsx-no-undef": "error", // Added rule
   },
 };
