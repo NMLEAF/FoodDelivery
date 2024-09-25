@@ -51,9 +51,13 @@ export const createFood = async (req, res) => {
   }
 };
 
+// DELETE A FOOD
 export const deleteFood = async (req, res) => {
   try {
-    const food = await foodModel.findByIdAndDelete(req.params.id);
+    const food = await foodModel.findById(req.params.id);
+    fs.unlink(`uploads/${food.image}`, () => {});
+
+    await foodModel.findByIdAndDelete(req.params.id);
 
     res.json({
       success: true,
@@ -65,6 +69,7 @@ export const deleteFood = async (req, res) => {
   }
 };
 
+// DELETE ALL FOODS
 export const deleteAllFoods = async (req, res) => {
   try {
     const food = await foodModel.deleteMany();
